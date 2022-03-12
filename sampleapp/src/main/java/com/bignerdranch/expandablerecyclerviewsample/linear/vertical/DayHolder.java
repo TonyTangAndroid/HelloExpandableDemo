@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.bignerdranch.expandablerecyclerview.ParentViewHolder;
 import com.bignerdranch.expandablerecyclerviewsample.R;
 
-public class RecipeViewHolder extends ParentViewHolder {
+public class DayHolder extends ParentViewHolder {
 
     private static final float INITIAL_POSITION = 0.0f;
     private static final float ROTATED_POSITION = 180f;
@@ -20,7 +20,7 @@ public class RecipeViewHolder extends ParentViewHolder {
     private final ImageView iv_expand;
     private final TextView tv_current_day;
 
-    public RecipeViewHolder(@NonNull View itemView) {
+    public DayHolder(@NonNull View itemView) {
         super(itemView);
         tv_current_day = itemView.findViewById(R.id.tv_current_day);
         iv_expand = itemView.findViewById(R.id.iv_expand);

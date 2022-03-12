@@ -12,7 +12,7 @@ import com.bignerdranch.expandablerecyclerviewsample.R;
 
 import java.util.List;
 
-public class WeatherAdapter extends ExpandableRecyclerAdapter<CurrentDay, Hour, RecipeViewHolder, IngredientViewHolder> {
+public class WeatherAdapter extends ExpandableRecyclerAdapter<CurrentDay, Hour, DayHolder, HourHolder> {
 
 
     private final LayoutInflater layoutInflater;
@@ -25,26 +25,26 @@ public class WeatherAdapter extends ExpandableRecyclerAdapter<CurrentDay, Hour, 
     @UiThread
     @NonNull
     @Override
-    public RecipeViewHolder onCreateParentViewHolder(@NonNull ViewGroup parentViewGroup, int viewType) {
-        return new RecipeViewHolder(layoutInflater.inflate(R.layout.item_day, parentViewGroup, false));
+    public DayHolder onCreateParentViewHolder(@NonNull ViewGroup parentViewGroup, int viewType) {
+        return new DayHolder(layoutInflater.inflate(R.layout.item_day, parentViewGroup, false));
     }
 
     @UiThread
     @NonNull
     @Override
-    public IngredientViewHolder onCreateChildViewHolder(@NonNull ViewGroup childViewGroup, int viewType) {
-        return new IngredientViewHolder(layoutInflater.inflate(R.layout.ingredient_view, childViewGroup, false));
+    public HourHolder onCreateChildViewHolder(@NonNull ViewGroup childViewGroup, int viewType) {
+        return new HourHolder(layoutInflater.inflate(R.layout.ingredient_view, childViewGroup, false));
     }
 
     @UiThread
     @Override
-    public void onBindParentViewHolder(@NonNull RecipeViewHolder recipeViewHolder, int parentPosition, @NonNull CurrentDay currentDay) {
-        recipeViewHolder.bind(currentDay);
+    public void onBindParentViewHolder(@NonNull DayHolder dayHolder, int parentPosition, @NonNull CurrentDay currentDay) {
+        dayHolder.bind(currentDay);
     }
 
     @UiThread
     @Override
-    public void onBindChildViewHolder(@NonNull IngredientViewHolder ingredientViewHolder, int parentPosition, int childPosition, @NonNull Hour hour) {
-        ingredientViewHolder.bind(hour);
+    public void onBindChildViewHolder(@NonNull HourHolder hourHolder, int parentPosition, int childPosition, @NonNull Hour hour) {
+        hourHolder.bind(hour);
     }
 }

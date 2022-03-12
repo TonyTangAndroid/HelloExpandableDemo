@@ -7,11 +7,11 @@ import android.widget.TextView;
 import com.bignerdranch.expandablerecyclerview.ChildViewHolder;
 import com.bignerdranch.expandablerecyclerviewsample.R;
 
-public class IngredientViewHolder extends ChildViewHolder {
+public class HourHolder extends ChildViewHolder {
 
     private final TextView tv_hour;
 
-    public IngredientViewHolder(@NonNull View itemView) {
+    public HourHolder(@NonNull View itemView) {
         super(itemView);
         tv_hour = itemView.findViewById(R.id.tv_hour);
     }
