@@ -31,14 +31,14 @@ public class WeatherActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weather);
 
-        Hour hour1 = new Hour("beef", false);
-        Hour hour2 = new Hour("cheese", true);
-        Hour hour3 = new Hour("salsa", true);
-        Hour hour4 = new Hour("bun", true);
+        Hour hour1 = new Hour("01:00am", false);
+        Hour hour2 = new Hour("02:00am", true);
+        Hour hour3 = new Hour("03:00am", true);
+        Hour hour4 = new Hour("04:00am", true);
 
         CurrentDay today = new CurrentDay("Today", Arrays.asList(hour1, hour2, hour3));
         CurrentDay tomorrow = new CurrentDay("Tomorrow", Arrays.asList(hour2,hour3));
-        CurrentDay thirdDay = new CurrentDay("Wedneday", Arrays.asList(hour1, hour2, hour4));
+        CurrentDay thirdDay = new CurrentDay("Wednesday", Arrays.asList(hour1, hour2, hour4));
         final List<CurrentDay> currentDays = Arrays.asList(today, tomorrow, thirdDay);
 
         RecyclerView recyclerView = findViewById(R.id.recyclerview);
