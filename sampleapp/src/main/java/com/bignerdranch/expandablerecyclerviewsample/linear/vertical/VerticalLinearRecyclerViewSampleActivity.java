@@ -38,27 +38,27 @@ public class VerticalLinearRecyclerViewSampleActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recycler_view_sample);
 
-        Ingredient beef = new Ingredient("beef", false);
-        Ingredient cheese = new Ingredient("cheese", true);
-        Ingredient salsa = new Ingredient("salsa", true);
-        Ingredient tortilla = new Ingredient("tortilla", true);
-        Ingredient ketchup = new Ingredient("ketchup", true);
-        Ingredient bun = new Ingredient("bun", true);
+        Hour beef = new Hour("beef", false);
+        Hour cheese = new Hour("cheese", true);
+        Hour salsa = new Hour("salsa", true);
+        Hour tortilla = new Hour("tortilla", true);
+        Hour ketchup = new Hour("ketchup", true);
+        Hour bun = new Hour("bun", true);
 
-        Recipe taco = new Recipe("taco", Arrays.asList(beef, cheese, salsa, tortilla));
-        Recipe quesadilla = new Recipe("quesadilla", Arrays.asList(cheese, tortilla));
-        Recipe burger = new Recipe("burger", Arrays.asList(beef, cheese, ketchup, bun));
-        final List<Recipe> recipes = Arrays.asList(taco, quesadilla, burger);
+        CurrentDay taco = new CurrentDay("taco", Arrays.asList(beef, cheese, salsa, tortilla));
+        CurrentDay quesadilla = new CurrentDay("quesadilla", Arrays.asList(cheese, tortilla));
+        CurrentDay burger = new CurrentDay("burger", Arrays.asList(beef, cheese, ketchup, bun));
+        final List<CurrentDay> currentDays = Arrays.asList(taco, quesadilla, burger);
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
-        mAdapter = new RecipeAdapter(this, recipes);
+        mAdapter = new RecipeAdapter(this, currentDays);
         mAdapter.setExpandCollapseListener(new ExpandableRecyclerAdapter.ExpandCollapseListener() {
             @UiThread
             @Override
             public void onParentExpanded(int parentPosition) {
-                Recipe expandedRecipe = recipes.get(parentPosition);
+                CurrentDay expandedCurrentDay = currentDays.get(parentPosition);
 
-                String toastMsg = getResources().getString(R.string.expanded, expandedRecipe.getName());
+                String toastMsg = getResources().getString(R.string.expanded, expandedCurrentDay.getName());
                 Toast.makeText(VerticalLinearRecyclerViewSampleActivity.this,
                         toastMsg,
                         Toast.LENGTH_SHORT)
@@ -68,9 +68,9 @@ public class VerticalLinearRecyclerViewSampleActivity extends AppCompatActivity{
             @UiThread
             @Override
             public void onParentCollapsed(int parentPosition) {
-                Recipe collapsedRecipe = recipes.get(parentPosition);
+                CurrentDay collapsedCurrentDay = currentDays.get(parentPosition);
 
-                String toastMsg = getResources().getString(R.string.collapsed, collapsedRecipe.getName());
+                String toastMsg = getResources().getString(R.string.collapsed, collapsedCurrentDay.getName());
                 Toast.makeText(VerticalLinearRecyclerViewSampleActivity.this,
                         toastMsg,
                         Toast.LENGTH_SHORT)

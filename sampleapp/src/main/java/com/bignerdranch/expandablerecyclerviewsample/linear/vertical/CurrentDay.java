@@ -4,14 +4,14 @@ import com.bignerdranch.expandablerecyclerview.model.Parent;
 
 import java.util.List;
 
-public class Recipe implements Parent<Ingredient> {
+public class CurrentDay implements Parent<Hour> {
 
     private String mName;
-    private List<Ingredient> mIngredients;
+    private List<Hour> mHours;
 
-    public Recipe(String name, List<Ingredient> ingredients) {
+    public CurrentDay(String name, List<Hour> hours) {
         mName = name;
-        mIngredients = ingredients;
+        mHours = hours;
     }
 
     public String getName() {
@@ -19,8 +19,8 @@ public class Recipe implements Parent<Ingredient> {
     }
 
     @Override
-    public List<Ingredient> getChildList() {
-        return mIngredients;
+    public List<Hour> getChildList() {
+        return mHours;
     }
 
     @Override
@@ -28,13 +28,13 @@ public class Recipe implements Parent<Ingredient> {
         return false;
     }
 
-    public Ingredient getIngredient(int position) {
-        return mIngredients.get(position);
+    public Hour getIngredient(int position) {
+        return mHours.get(position);
     }
 
     public boolean isVegetarian() {
-        for (Ingredient ingredient : mIngredients) {
-            if (!ingredient.isVegetarian()) {
+        for (Hour hour : mHours) {
+            if (!hour.isVegetarian()) {
                 return false;
             }
         }

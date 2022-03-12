@@ -12,7 +12,7 @@ import com.bignerdranch.expandablerecyclerviewsample.R;
 
 import java.util.List;
 
-public class RecipeAdapter extends ExpandableRecyclerAdapter<Recipe, Ingredient, RecipeViewHolder, IngredientViewHolder> {
+public class RecipeAdapter extends ExpandableRecyclerAdapter<CurrentDay, Hour, RecipeViewHolder, IngredientViewHolder> {
 
     private static final int PARENT_VEGETARIAN = 0;
     private static final int PARENT_NORMAL = 1;
@@ -20,11 +20,11 @@ public class RecipeAdapter extends ExpandableRecyclerAdapter<Recipe, Ingredient,
     private static final int CHILD_NORMAL = 3;
 
     private LayoutInflater mInflater;
-    private List<Recipe> mRecipeList;
+    private List<CurrentDay> mCurrentDayList;
 
-    public RecipeAdapter(Context context, @NonNull List<Recipe> recipeList) {
-        super(recipeList);
-        mRecipeList = recipeList;
+    public RecipeAdapter(Context context, @NonNull List<CurrentDay> currentDayList) {
+        super(currentDayList);
+        mCurrentDayList = currentDayList;
         mInflater = LayoutInflater.from(context);
     }
 
@@ -64,19 +64,19 @@ public class RecipeAdapter extends ExpandableRecyclerAdapter<Recipe, Ingredient,
 
     @UiThread
     @Override
-    public void onBindParentViewHolder(@NonNull RecipeViewHolder recipeViewHolder, int parentPosition, @NonNull Recipe recipe) {
-        recipeViewHolder.bind(recipe);
+    public void onBindParentViewHolder(@NonNull RecipeViewHolder recipeViewHolder, int parentPosition, @NonNull CurrentDay currentDay) {
+        recipeViewHolder.bind(currentDay);
     }
 
     @UiThread
     @Override
-    public void onBindChildViewHolder(@NonNull IngredientViewHolder ingredientViewHolder, int parentPosition, int childPosition, @NonNull Ingredient ingredient) {
-        ingredientViewHolder.bind(ingredient);
+    public void onBindChildViewHolder(@NonNull IngredientViewHolder ingredientViewHolder, int parentPosition, int childPosition, @NonNull Hour hour) {
+        ingredientViewHolder.bind(hour);
     }
 
     @Override
     public int getParentViewType(int parentPosition) {
-        if (mRecipeList.get(parentPosition).isVegetarian()) {
+        if (mCurrentDayList.get(parentPosition).isVegetarian()) {
             return PARENT_VEGETARIAN;
         } else {
             return PARENT_NORMAL;
@@ -85,8 +85,8 @@ public class RecipeAdapter extends ExpandableRecyclerAdapter<Recipe, Ingredient,
 
     @Override
     public int getChildViewType(int parentPosition, int childPosition) {
-        Ingredient ingredient = mRecipeList.get(parentPosition).getIngredient(childPosition);
-        if (ingredient.isVegetarian()) {
+        Hour hour = mCurrentDayList.get(parentPosition).getIngredient(childPosition);
+        if (hour.isVegetarian()) {
             return CHILD_VEGETARIAN;
         } else {
             return CHILD_NORMAL;

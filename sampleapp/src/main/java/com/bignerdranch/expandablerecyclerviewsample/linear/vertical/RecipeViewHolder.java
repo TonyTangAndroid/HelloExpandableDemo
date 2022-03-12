@@ -27,8 +27,8 @@ public class RecipeViewHolder extends ParentViewHolder {
         mArrowExpandImageView = (ImageView) itemView.findViewById(R.id.arrow_expand_imageview);
     }
 
-    public void bind(@NonNull Recipe recipe) {
-        mRecipeTextView.setText(recipe.getName());
+    public void bind(@NonNull CurrentDay currentDay) {
+        mRecipeTextView.setText(currentDay.getName());
     }
 
     @SuppressLint("NewApi")

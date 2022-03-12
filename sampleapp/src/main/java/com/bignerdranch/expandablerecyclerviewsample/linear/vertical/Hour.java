@@ -1,11 +1,11 @@
 package com.bignerdranch.expandablerecyclerviewsample.linear.vertical;
 
-public class Ingredient {
+public class Hour {
 
     private String mName;
     private boolean mIsVegetarian;
 
-    public Ingredient(String name, boolean isVegetarian) {
+    public Hour(String name, boolean isVegetarian) {
         mName = name;
         mIsVegetarian = isVegetarian;
     }
