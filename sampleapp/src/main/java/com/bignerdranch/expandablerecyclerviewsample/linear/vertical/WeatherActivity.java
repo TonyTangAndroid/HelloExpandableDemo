@@ -1,7 +1,5 @@
 package com.bignerdranch.expandablerecyclerviewsample.linear.vertical;
 
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.UiThread;
@@ -24,42 +22,35 @@ import java.util.List;
  * @version 1.0
  * @since 5/27/2015
  */
-public class VerticalLinearRecyclerViewSampleActivity extends AppCompatActivity{
+public class WeatherActivity extends AppCompatActivity{
 
-    private RecipeAdapter mAdapter;
-
-    @NonNull
-    public static Intent newIntent(Context context) {
-        return new Intent(context, VerticalLinearRecyclerViewSampleActivity.class);
-    }
+    private WeatherAdapter weatherAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_recycler_view_sample);
+        setContentView(R.layout.activity_weather);
 
-        Hour beef = new Hour("beef", false);
-        Hour cheese = new Hour("cheese", true);
-        Hour salsa = new Hour("salsa", true);
-        Hour tortilla = new Hour("tortilla", true);
-        Hour ketchup = new Hour("ketchup", true);
-        Hour bun = new Hour("bun", true);
+        Hour hour1 = new Hour("beef", false);
+        Hour hour2 = new Hour("cheese", true);
+        Hour hour3 = new Hour("salsa", true);
+        Hour hour4 = new Hour("bun", true);
 
-        CurrentDay taco = new CurrentDay("taco", Arrays.asList(beef, cheese, salsa, tortilla));
-        CurrentDay quesadilla = new CurrentDay("quesadilla", Arrays.asList(cheese, tortilla));
-        CurrentDay burger = new CurrentDay("burger", Arrays.asList(beef, cheese, ketchup, bun));
-        final List<CurrentDay> currentDays = Arrays.asList(taco, quesadilla, burger);
+        CurrentDay today = new CurrentDay("Today", Arrays.asList(hour1, hour2, hour3));
+        CurrentDay tomorrow = new CurrentDay("Tomorrow", Arrays.asList(hour2,hour3));
+        CurrentDay thirdDay = new CurrentDay("Wedneday", Arrays.asList(hour1, hour2, hour4));
+        final List<CurrentDay> currentDays = Arrays.asList(today, tomorrow, thirdDay);
 
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
-        mAdapter = new RecipeAdapter(this, currentDays);
-        mAdapter.setExpandCollapseListener(new ExpandableRecyclerAdapter.ExpandCollapseListener() {
+        RecyclerView recyclerView = findViewById(R.id.recyclerview);
+        weatherAdapter = new WeatherAdapter(this, currentDays);
+        weatherAdapter.setExpandCollapseListener(new ExpandableRecyclerAdapter.ExpandCollapseListener() {
             @UiThread
             @Override
             public void onParentExpanded(int parentPosition) {
                 CurrentDay expandedCurrentDay = currentDays.get(parentPosition);
 
-                String toastMsg = getResources().getString(R.string.expanded, expandedCurrentDay.getName());
-                Toast.makeText(VerticalLinearRecyclerViewSampleActivity.this,
+                String toastMsg = getResources().getString(R.string.expanded, expandedCurrentDay.daytime());
+                Toast.makeText(WeatherActivity.this,
                         toastMsg,
                         Toast.LENGTH_SHORT)
                         .show();
@@ -70,27 +61,27 @@ public class VerticalLinearRecyclerViewSampleActivity extends AppCompatActivity{
             public void onParentCollapsed(int parentPosition) {
                 CurrentDay collapsedCurrentDay = currentDays.get(parentPosition);
 
-                String toastMsg = getResources().getString(R.string.collapsed, collapsedCurrentDay.getName());
-                Toast.makeText(VerticalLinearRecyclerViewSampleActivity.this,
+                String toastMsg = getResources().getString(R.string.collapsed, collapsedCurrentDay.daytime());
+                Toast.makeText(WeatherActivity.this,
                         toastMsg,
                         Toast.LENGTH_SHORT)
                         .show();
             }
         });
 
-        recyclerView.setAdapter(mAdapter);
+        recyclerView.setAdapter(weatherAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        mAdapter.onSaveInstanceState(outState);
+        weatherAdapter.onSaveInstanceState(outState);
     }
 
     @Override
     protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-        mAdapter.onRestoreInstanceState(savedInstanceState);
+        weatherAdapter.onRestoreInstanceState(savedInstanceState);
     }
 }

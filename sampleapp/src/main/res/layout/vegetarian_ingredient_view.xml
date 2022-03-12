@@ -14,7 +14,7 @@
         android:src="@drawable/vegetarian_symbol"/>
 
     <TextView
-        android:id="@+id/ingredient_textview"
+        android:id="@+id/tv_hour"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/standard_material_padding"

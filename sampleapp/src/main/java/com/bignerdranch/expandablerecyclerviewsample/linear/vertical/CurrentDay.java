@@ -6,21 +6,21 @@ import java.util.List;
 
 public class CurrentDay implements Parent<Hour> {
 
-    private String mName;
-    private List<Hour> mHours;
+    private final String daytime;
+    private final List<Hour> hourList;
 
     public CurrentDay(String name, List<Hour> hours) {
-        mName = name;
-        mHours = hours;
+        daytime = name;
+        hourList = hours;
     }
 
-    public String getName() {
-        return mName;
+    public String daytime() {
+        return daytime;
     }
 
     @Override
     public List<Hour> getChildList() {
-        return mHours;
+        return hourList;
     }
 
     @Override
@@ -28,16 +28,8 @@ public class CurrentDay implements Parent<Hour> {
         return false;
     }
 
-    public Hour getIngredient(int position) {
-        return mHours.get(position);
+    public Hour getHour(int position) {
+        return hourList.get(position);
     }
 
-    public boolean isVegetarian() {
-        for (Hour hour : mHours) {
-            if (!hour.isVegetarian()) {
-                return false;
-            }
-        }
-        return true;
-    }
 }

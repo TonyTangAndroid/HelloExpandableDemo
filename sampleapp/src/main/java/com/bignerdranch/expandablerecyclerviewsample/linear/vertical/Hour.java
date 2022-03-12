@@ -2,19 +2,19 @@ package com.bignerdranch.expandablerecyclerviewsample.linear.vertical;
 
 public class Hour {
 
-    private String mName;
-    private boolean mIsVegetarian;
+    private final String time;
+    private final String temp;
 
     public Hour(String name, boolean isVegetarian) {
-        mName = name;
-        mIsVegetarian = isVegetarian;
+        time = name;
+        temp = String.valueOf(isVegetarian);
     }
 
     public String getName() {
-        return mName;
+        return time;
     }
 
-    public boolean isVegetarian() {
-        return mIsVegetarian;
+    public String isVegetarian() {
+        return temp;
     }
 }

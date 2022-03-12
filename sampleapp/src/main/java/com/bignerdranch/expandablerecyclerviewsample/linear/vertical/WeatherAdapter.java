@@ -12,20 +12,20 @@ import com.bignerdranch.expandablerecyclerviewsample.R;
 
 import java.util.List;
 
-public class RecipeAdapter extends ExpandableRecyclerAdapter<CurrentDay, Hour, RecipeViewHolder, IngredientViewHolder> {
+public class WeatherAdapter extends ExpandableRecyclerAdapter<CurrentDay, Hour, RecipeViewHolder, IngredientViewHolder> {
 
     private static final int PARENT_VEGETARIAN = 0;
     private static final int PARENT_NORMAL = 1;
     private static final int CHILD_VEGETARIAN = 2;
     private static final int CHILD_NORMAL = 3;
 
-    private LayoutInflater mInflater;
-    private List<CurrentDay> mCurrentDayList;
+    private final LayoutInflater layoutInflater;
+    private final List<CurrentDay> dayList;
 
-    public RecipeAdapter(Context context, @NonNull List<CurrentDay> currentDayList) {
+    public WeatherAdapter(Context context, @NonNull List<CurrentDay> currentDayList) {
         super(currentDayList);
-        mCurrentDayList = currentDayList;
-        mInflater = LayoutInflater.from(context);
+        dayList = currentDayList;
+        layoutInflater = LayoutInflater.from(context);
     }
 
     @UiThread
@@ -36,10 +36,10 @@ public class RecipeAdapter extends ExpandableRecyclerAdapter<CurrentDay, Hour, R
         switch (viewType) {
             default:
             case PARENT_NORMAL:
-                recipeView = mInflater.inflate(R.layout.recipe_view, parentViewGroup, false);
+                recipeView = layoutInflater.inflate(R.layout.recipe_view, parentViewGroup, false);
                 break;
             case PARENT_VEGETARIAN:
-                recipeView = mInflater.inflate(R.layout.vegetarian_recipe_view, parentViewGroup, false);
+                recipeView = layoutInflater.inflate(R.layout.vegetarian_recipe_view, parentViewGroup, false);
                 break;
         }
         return new RecipeViewHolder(recipeView);
@@ -53,10 +53,10 @@ public class RecipeAdapter extends ExpandableRecyclerAdapter<CurrentDay, Hour, R
         switch (viewType) {
             default:
             case CHILD_NORMAL:
-                ingredientView = mInflater.inflate(R.layout.ingredient_view, childViewGroup, false);
+                ingredientView = layoutInflater.inflate(R.layout.ingredient_view, childViewGroup, false);
                 break;
             case CHILD_VEGETARIAN:
-                ingredientView = mInflater.inflate(R.layout.vegetarian_ingredient_view, childViewGroup, false);
+                ingredientView = layoutInflater.inflate(R.layout.vegetarian_ingredient_view, childViewGroup, false);
                 break;
         }
         return new IngredientViewHolder(ingredientView);
@@ -76,21 +76,12 @@ public class RecipeAdapter extends ExpandableRecyclerAdapter<CurrentDay, Hour, R
 
     @Override
     public int getParentViewType(int parentPosition) {
-        if (mCurrentDayList.get(parentPosition).isVegetarian()) {
-            return PARENT_VEGETARIAN;
-        } else {
-            return PARENT_NORMAL;
-        }
+        return PARENT_NORMAL;
     }
 
     @Override
     public int getChildViewType(int parentPosition, int childPosition) {
-        Hour hour = mCurrentDayList.get(parentPosition).getIngredient(childPosition);
-        if (hour.isVegetarian()) {
-            return CHILD_VEGETARIAN;
-        } else {
-            return CHILD_NORMAL;
-        }
+        return CHILD_NORMAL;
     }
 
     @Override

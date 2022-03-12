@@ -11,7 +11,7 @@
         <activity
             android:exported="true"
             android:label="@string/activity_vertical_linear_sample_title"
-            android:name=".linear.vertical.VerticalLinearRecyclerViewSampleActivity">
+            android:name=".linear.vertical.WeatherActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

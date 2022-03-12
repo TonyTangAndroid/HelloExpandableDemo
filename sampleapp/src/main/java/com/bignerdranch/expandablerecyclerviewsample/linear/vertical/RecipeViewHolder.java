@@ -1,7 +1,7 @@
 package com.bignerdranch.expandablerecyclerviewsample.linear.vertical;
 
 import android.annotation.SuppressLint;
-import android.os.Build;
+
 import androidx.annotation.NonNull;
 import android.view.View;
 import android.view.animation.RotateAnimation;
@@ -17,53 +17,48 @@ public class RecipeViewHolder extends ParentViewHolder {
     private static final float ROTATED_POSITION = 180f;
 
     @NonNull
-    private final ImageView mArrowExpandImageView;
-    private TextView mRecipeTextView;
+    private final ImageView iv_expand;
+    private final TextView tv_current_day;
 
     public RecipeViewHolder(@NonNull View itemView) {
         super(itemView);
-        mRecipeTextView = (TextView) itemView.findViewById(R.id.recipe_textview);
-
-        mArrowExpandImageView = (ImageView) itemView.findViewById(R.id.arrow_expand_imageview);
+        tv_current_day = itemView.findViewById(R.id.tv_current_day);
+        iv_expand = itemView.findViewById(R.id.iv_expand);
     }
 
     public void bind(@NonNull CurrentDay currentDay) {
-        mRecipeTextView.setText(currentDay.getName());
+        tv_current_day.setText(currentDay.daytime());
     }
 
     @SuppressLint("NewApi")
     @Override
     public void setExpanded(boolean expanded) {
         super.setExpanded(expanded);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-            if (expanded) {
-                mArrowExpandImageView.setRotation(ROTATED_POSITION);
-            } else {
-                mArrowExpandImageView.setRotation(INITIAL_POSITION);
-            }
+        if (expanded) {
+            iv_expand.setRotation(ROTATED_POSITION);
+        } else {
+            iv_expand.setRotation(INITIAL_POSITION);
         }
     }
 
     @Override
     public void onExpansionToggled(boolean expanded) {
         super.onExpansionToggled(expanded);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-            RotateAnimation rotateAnimation;
-            if (expanded) { // rotate clockwise
-                 rotateAnimation = new RotateAnimation(ROTATED_POSITION,
-                        INITIAL_POSITION,
-                        RotateAnimation.RELATIVE_TO_SELF, 0.5f,
-                        RotateAnimation.RELATIVE_TO_SELF, 0.5f);
-            } else { // rotate counterclockwise
-                rotateAnimation = new RotateAnimation(-1 * ROTATED_POSITION,
-                        INITIAL_POSITION,
-                        RotateAnimation.RELATIVE_TO_SELF, 0.5f,
-                        RotateAnimation.RELATIVE_TO_SELF, 0.5f);
-            }
-
-            rotateAnimation.setDuration(200);
-            rotateAnimation.setFillAfter(true);
-            mArrowExpandImageView.startAnimation(rotateAnimation);
+        RotateAnimation rotateAnimation;
+        if (expanded) { // rotate clockwise
+             rotateAnimation = new RotateAnimation(ROTATED_POSITION,
+                    INITIAL_POSITION,
+                    RotateAnimation.RELATIVE_TO_SELF, 0.5f,
+                    RotateAnimation.RELATIVE_TO_SELF, 0.5f);
+        } else { // rotate counterclockwise
+            rotateAnimation = new RotateAnimation(-1 * ROTATED_POSITION,
+                    INITIAL_POSITION,
+                    RotateAnimation.RELATIVE_TO_SELF, 0.5f,
+                    RotateAnimation.RELATIVE_TO_SELF, 0.5f);
         }
+
+        rotateAnimation.setDuration(200);
+        rotateAnimation.setFillAfter(true);
+        iv_expand.startAnimation(rotateAnimation);
     }
 }

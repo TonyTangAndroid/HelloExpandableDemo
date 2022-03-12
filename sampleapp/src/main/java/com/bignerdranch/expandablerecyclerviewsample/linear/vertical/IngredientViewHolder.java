@@ -9,14 +9,14 @@ import com.bignerdranch.expandablerecyclerviewsample.R;
 
 public class IngredientViewHolder extends ChildViewHolder {
 
-    private TextView mIngredientTextView;
+    private final TextView tv_hour;
 
     public IngredientViewHolder(@NonNull View itemView) {
         super(itemView);
-        mIngredientTextView = (TextView) itemView.findViewById(R.id.ingredient_textview);
+        tv_hour = itemView.findViewById(R.id.tv_hour);
     }
 
     public void bind(@NonNull Hour hour) {
-        mIngredientTextView.setText(hour.getName());
+        tv_hour.setText(hour.getName());
     }
 }
