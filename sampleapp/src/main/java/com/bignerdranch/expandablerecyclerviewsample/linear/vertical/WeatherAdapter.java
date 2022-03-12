@@ -33,7 +33,7 @@ public class WeatherAdapter extends ExpandableRecyclerAdapter<CurrentDay, Hour, 
     @NonNull
     @Override
     public HourHolder onCreateChildViewHolder(@NonNull ViewGroup childViewGroup, int viewType) {
-        return new HourHolder(layoutInflater.inflate(R.layout.ingredient_view, childViewGroup, false));
+        return new HourHolder(layoutInflater.inflate(R.layout.item_hour, childViewGroup, false));
     }
 
     @UiThread
