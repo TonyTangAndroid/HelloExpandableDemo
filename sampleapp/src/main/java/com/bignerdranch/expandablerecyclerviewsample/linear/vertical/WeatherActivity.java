@@ -31,10 +31,10 @@ public class WeatherActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weather);
 
-        Hour hour1 = new Hour("01:00am", false);
-        Hour hour2 = new Hour("02:00am", true);
-        Hour hour3 = new Hour("03:00am", true);
-        Hour hour4 = new Hour("04:00am", true);
+        Hour hour1 = new Hour("01:00am", "32F");
+        Hour hour2 = new Hour("02:00am", "33F");
+        Hour hour3 = new Hour("03:00am", "30F");
+        Hour hour4 = new Hour("04:00am", "40F");
 
         CurrentDay today = new CurrentDay("Today", Arrays.asList(hour1, hour2, hour3));
         CurrentDay tomorrow = new CurrentDay("Tomorrow", Arrays.asList(hour2,hour3));
@@ -48,7 +48,6 @@ public class WeatherActivity extends AppCompatActivity{
             @Override
             public void onParentExpanded(int parentPosition) {
                 CurrentDay expandedCurrentDay = currentDays.get(parentPosition);
-
                 String toastMsg = getResources().getString(R.string.expanded, expandedCurrentDay.daytime());
                 Toast.makeText(WeatherActivity.this,
                         toastMsg,

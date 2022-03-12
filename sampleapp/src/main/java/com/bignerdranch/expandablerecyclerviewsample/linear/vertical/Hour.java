@@ -5,16 +5,16 @@ public class Hour {
     private final String time;
     private final String temp;
 
-    public Hour(String name, boolean isVegetarian) {
+    public Hour(String name, String temp) {
         time = name;
-        temp = String.valueOf(isVegetarian);
+        this.temp = temp;
     }
 
     public String getName() {
         return time;
     }
 
-    public String isVegetarian() {
+    public String getTemp() {
         return temp;
     }
 }

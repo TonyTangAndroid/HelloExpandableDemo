@@ -2,11 +2,18 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
-              android:orientation="vertical"
+              android:orientation="horizontal"
               android:padding="@dimen/standard_material_padding">
 
     <TextView android:id="@+id/tv_hour"
-              android:layout_width="wrap_content"
+        android:layout_weight="1"
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:textSize="@dimen/standard_text_size"/>
+
+    <TextView android:id="@+id/tv_temp"
+        android:layout_weight="1"
+              android:layout_width="0dp"
               android:layout_height="wrap_content"
               android:textSize="@dimen/standard_text_size"/>
 
